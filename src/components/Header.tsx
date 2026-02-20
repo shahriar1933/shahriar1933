@@ -2,7 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { User, Rocket, Mail, BrainCircuit } from "lucide-react";
+import {
+  User,
+  Rocket,
+  Mail,
+  BrainCircuit,
+  ChevronDown,
+  Puzzle,
+  Camera,
+} from "lucide-react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,6 +57,17 @@ export default function Header() {
       icon: <BrainCircuit className="w-6 h-6" />,
     },
     {
+      label: "Extensions",
+      icon: <Puzzle className="w-6 h-6" />,
+      children: [
+        {
+          href: "/extensions/primeshot",
+          label: "PrimeShot",
+          icon: <Camera className="w-6 h-6" />,
+        },
+      ],
+    },
+    {
       href: "#projects",
       label: "Projects",
       icon: <Rocket className="w-6 h-6" />,
@@ -92,14 +111,45 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-6 lg:gap-8 items-center">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-text-muted hover:text-white text-sm font-medium relative py-1 transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-linear-to-r after:from-primary after:to-secondary after:rounded-sm after:transition-all after:duration-300 hover:after:w-full"
-                suppressHydrationWarning
-              >
-                {link.label}
-              </Link>
+              <div key={link.label} className="relative group">
+                {link.href ? (
+                  <Link
+                    href={link.href}
+                    className="text-text-muted hover:text-white text-sm font-medium relative py-1 transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-linear-to-r after:from-primary after:to-secondary after:rounded-sm after:transition-all after:duration-300 hover:after:w-full flex items-center gap-1"
+                    suppressHydrationWarning
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button className="text-text-muted hover:text-white text-sm font-medium relative py-1 transition-colors duration-200 flex items-center gap-1 group-hover:text-white cursor-pointer">
+                    {link.label}
+                    <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                  </button>
+                )}
+
+                {/* Dropdown Menu */}
+                {link.children && (
+                  <div className="absolute top-full left-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                    <div className="bg-bg-deep/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 shadow-xl shadow-black/20 overflow-hidden">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-text-muted hover:text-white transition-all duration-200 group/item"
+                          suppressHydrationWarning
+                        >
+                          <span className="text-primary group-hover/item:text-secondary transition-colors">
+                            {child.icon}
+                          </span>
+                          <span className="text-sm font-medium">
+                            {child.label}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -160,40 +210,88 @@ export default function Header() {
             {/* Nav Links */}
             <div className="flex flex-col items-center gap-2 w-full max-w-xs">
               {navLinks.map((link, index) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className={`group w-full flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/2 border border-white/5 hover:bg-white/5 hover:border-primary/30 transition-all duration-300 ${
-                    isMenuOpen
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
-                  }`}
-                  style={{
-                    transitionDelay: isMenuOpen
-                      ? `${150 + index * 75}ms`
-                      : "0ms",
-                  }}
-                  suppressHydrationWarning
-                >
-                  <span className="text-2xl">{link.icon}</span>
-                  <span className="font-outfit text-xl font-semibold text-white group-hover:text-primary transition-colors">
-                    {link.label}
-                  </span>
-                  <svg
-                    className="w-5 h-5 ml-auto text-text-muted group-hover:text-primary group-hover:translate-x-1 transition-all"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
+                <div key={link.label} className="w-full">
+                  {link.href ? (
+                    <Link
+                      href={link.href}
+                      onClick={closeMenu}
+                      className={`group w-full flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/2 border border-white/5 hover:bg-white/5 hover:border-primary/30 transition-all duration-300 ${
+                        isMenuOpen
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-4"
+                      }`}
+                      style={{
+                        transitionDelay: isMenuOpen
+                          ? `${150 + index * 75}ms`
+                          : "0ms",
+                      }}
+                      suppressHydrationWarning
+                    >
+                      <span className="text-2xl">{link.icon}</span>
+                      <span className="font-outfit text-xl font-semibold text-white group-hover:text-primary transition-colors">
+                        {link.label}
+                      </span>
+                      <svg
+                        className="w-5 h-5 ml-auto text-text-muted group-hover:text-primary group-hover:translate-x-1 transition-all"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </Link>
+                  ) : (
+                    <div className="w-full">
+                      <div
+                        className={`group w-full flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/2 border border-white/5 mb-2 ${
+                          isMenuOpen
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-4"
+                        }`}
+                        style={{
+                          transitionDelay: isMenuOpen
+                            ? `${150 + index * 75}ms`
+                            : "0ms",
+                        }}
+                      >
+                        <span className="text-2xl">{link.icon}</span>
+                        <span className="font-outfit text-xl font-semibold text-white">
+                          {link.label}
+                        </span>
+                      </div>
+                      <div className="pl-12 space-y-2">
+                        {link.children?.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={closeMenu}
+                            className={`group w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white/2 border border-white/5 hover:bg-white/5 hover:border-primary/30 transition-all duration-300 ${
+                              isMenuOpen
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-4"
+                            }`}
+                            style={{
+                              transitionDelay: isMenuOpen
+                                ? `${200 + index * 75}ms`
+                                : "0ms",
+                            }}
+                            suppressHydrationWarning
+                          >
+                            <span className="text-primary">{child.icon}</span>
+                            <span className="font-outfit text-lg font-medium text-text-muted group-hover:text-white transition-colors">
+                              {child.label}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
