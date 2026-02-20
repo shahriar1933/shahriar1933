@@ -7,14 +7,14 @@ import {
   Terminal,
   Cpu,
   Search,
-  Bug,
-  Zap,
+  // Bug,
+  // Zap,
   GitPullRequest,
   Wrench,
   Layers,
   TestTube,
   Gauge,
-  FileText,
+  // FileText,
   ShieldCheck,
   MessageSquareCode,
 } from "lucide-react";
@@ -49,7 +49,7 @@ export default function Skills() {
       title: "Code Refactoring",
       description:
         "Modernizing legacy codebases and optimizing performance through intelligent restructuring.",
-      icon: <Code2 className="w-6 h-6 text-[var(--primary)]" />,
+      icon: <Code2 className="w-6 h-6 text-primary" />,
     },
     {
       title: "Smart Debugging",
@@ -67,7 +67,7 @@ export default function Skills() {
       title: "Automated Review",
       description:
         "Deep static analysis and logic verification to ensure best practices and security.",
-      icon: <Search className="w-6 h-6 text-[var(--secondary)]" />,
+      icon: <Search className="w-6 h-6 text-secondary" />,
     },
     {
       title: "Test Generation",
@@ -121,7 +121,7 @@ export default function Skills() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="font-[family-name:var(--font-outfit)] font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-16">
+          <h2 className="font-outfit font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-16">
             AI-Powered <span className="text-gradient">Workflow</span>
           </h2>
 
@@ -129,7 +129,7 @@ export default function Skills() {
             {/* AI Agents Column */}
             <div className="lg:col-span-1 space-y-6">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <Bot className="w-6 h-6 text-[var(--primary)]" />
+                <Bot className="w-6 h-6 text-primary" />
                 AI Agents
               </h3>
               <motion.div
@@ -139,11 +139,11 @@ export default function Skills() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
               >
-                {aiTools.map((tool, i) => (
+                {aiTools.map((tool) => (
                   <motion.div
                     key={tool.name}
                     variants={itemVariants}
-                    className="glass-card glass-shine p-4 rounded-xl flex items-center gap-4 hover:border-[var(--primary)]/30 transition-colors"
+                    className="glass-card glass-shine p-4 rounded-xl flex items-center gap-4 hover:border-primary/30 transition-colors"
                     whileHover={{
                       x: 5,
                       backgroundColor: "rgba(255, 255, 255, 0.05)",
@@ -157,7 +157,7 @@ export default function Skills() {
                       <div className="font-bold text-lg text-white">
                         {tool.name}
                       </div>
-                      <div className="text-sm text-[var(--text-secondary)]">
+                      <div className="text-sm text-text-secondary">
                         {tool.role}
                       </div>
                     </div>
@@ -169,7 +169,7 @@ export default function Skills() {
             {/* Capabilities Grid */}
             <div className="lg:col-span-2">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <GitPullRequest className="w-6 h-6 text-[var(--secondary)]" />
+                <GitPullRequest className="w-6 h-6 text-secondary" />
                 Engineering Capabilities
               </h3>
               <motion.div
@@ -183,7 +183,7 @@ export default function Skills() {
                   <motion.div
                     key={item.title}
                     variants={itemVariants}
-                    className="glass-card p-6 rounded-xl hover:bg-white/[0.03] transition-colors group"
+                    className="glass-card p-6 rounded-xl hover:bg-white/3 transition-colors group"
                     whileHover={{
                       y: -5,
                       transition: { type: "spring", stiffness: 300 },
@@ -195,7 +195,7 @@ export default function Skills() {
                     <h4 className="font-bold text-lg text-white mb-2">
                       {item.title}
                     </h4>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    <p className="text-sm text-text-secondary leading-relaxed">
                       {item.description}
                     </p>
                   </motion.div>

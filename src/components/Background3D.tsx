@@ -47,7 +47,7 @@ export default function Background3D() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none">
       {/* Gradient Overlay - moved behind elements or low opacity */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-dark)] via-transparent to-[var(--bg-dark)] z-20 opacity-40" />
+      <div className="absolute inset-0 bg-linear-to-b from-bg-dark via-transparent to-bg-dark z-20 opacity-40" />
 
       {/* Floating Code Editor Window */}
       <FloatingElement
@@ -98,15 +98,12 @@ export default function Background3D() {
 
       {/* Abstract 3D Shapes & Icons */}
       <FloatingElement depth={0.5} x={85} y={15} rotate={10} className="z-10">
-        <Box
-          className="w-16 h-16 text-[var(--primary)] opacity-40"
-          strokeWidth={1}
-        />
+        <Box className="w-16 h-16 text-primary opacity-40" strokeWidth={1} />
       </FloatingElement>
 
       <FloatingElement depth={-0.3} x={15} y={45} rotate={-15} className="z-10">
         <Terminal
-          className="w-20 h-20 text-[var(--secondary)] opacity-30"
+          className="w-20 h-20 text-secondary opacity-30"
           strokeWidth={1}
         />
       </FloatingElement>
@@ -123,14 +120,11 @@ export default function Background3D() {
       </FloatingElement>
 
       <FloatingElement depth={0.2} x={90} y={85} rotate={20} className="z-10">
-        <Code
-          className="w-24 h-24 text-[var(--primary)] opacity-30"
-          strokeWidth={0.5}
-        />
+        <Code className="w-24 h-24 text-primary opacity-30" strokeWidth={0.5} />
       </FloatingElement>
 
       <FloatingElement depth={-0.1} x={50} y={50} rotate={0} className="z-0">
-        <div className="w-96 h-96 rounded-full bg-[var(--primary)] opacity-[0.05] blur-3xl filter" />
+        <div className="w-96 h-96 rounded-full bg-primary opacity-5 blur-3xl filter" />
       </FloatingElement>
     </div>
   );

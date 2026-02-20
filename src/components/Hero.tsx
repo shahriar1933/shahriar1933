@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Hand } from "lucide-react";
@@ -51,24 +51,24 @@ export default function Hero() {
         >
           <motion.h1
             variants={itemVariants}
-            className="font-[family-name:var(--font-outfit)] font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-tight tracking-tight shadow-[0_0_80px_rgba(255,255,255,0.1)]"
+            className="font-outfit font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-tight tracking-tight shadow-[0_0_80px_rgba(255,255,255,0.1)]"
           >
             Hi, I&apos;m{" "}
             <span className="text-gradient drop-shadow-[0_0_30px_rgba(49,120,198,0.4)]">
               Shahriar
             </span>{" "}
-            <Hand className="inline-block w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ml-3 text-[var(--primary)] animate-pulse drop-shadow-[0_0_15px_rgba(49,120,198,0.8)]" />
+            <Hand className="inline-block w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ml-3 text-primary animate-pulse drop-shadow-[0_0_15px_rgba(49,120,198,0.8)]" />
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg sm:text-xl md:text-2xl text-[var(--text-secondary)] mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto md:mx-0"
+            className="text-lg sm:text-xl md:text-2xl text-text-secondary mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto md:mx-0"
           >
             Full-Stack Developer • Prompt Engineer • Web Developer • Blockchain
             Specialist
             <br className="mt-4" />
-            Using AI-assisted workflows to build faster, smarter applications and contributing to the
-            Steem blockchain ecosystem.
+            Using AI-assisted workflows to build faster, smarter applications
+            and contributing to the Steem blockchain ecosystem.
           </motion.p>
 
           <motion.div
@@ -77,14 +77,14 @@ export default function Hero() {
           >
             <Link
               href="#projects"
-              className="group min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full bg-white text-[var(--bg-dark)] transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--primary)] hover:to-[var(--secondary)] hover:text-white hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--primary-glow)] relative overflow-hidden"
+              className="group min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-outfit font-semibold text-base sm:text-lg rounded-full bg-white text-bg-dark transition-all duration-300 hover:bg-linear-to-r hover:from-primary hover:to-secondary hover:text-white hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-glow relative overflow-hidden"
               suppressHydrationWarning
             >
               <span className="relative z-10">Explore My Work</span>
             </Link>
             <Link
               href="#contact"
-              className="min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full border border-[var(--glass-border)] text-white transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:-translate-y-1 hover:bg-white/[0.03]"
+              className="min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-outfit font-semibold text-base sm:text-lg rounded-full border border-glass-border text-white transition-all duration-300 hover:border-primary hover:text-primary hover:-translate-y-1 hover:bg-white/3"
               suppressHydrationWarning
             >
               Contact Me
@@ -222,7 +222,13 @@ export default function Hero() {
   );
 }
 
-function FloatingTech({ tech, index }: { tech: any; index: number }) {
+function FloatingTech({
+  tech,
+  index,
+}: {
+  tech: { name: string; color: string; icon: ReactNode; p: string };
+  index: number;
+}) {
   const [randomOffsets, setRandomOffsets] = useState({
     x1: 0,
     y1: 0,
@@ -230,14 +236,12 @@ function FloatingTech({ tech, index }: { tech: any; index: number }) {
     y2: 0,
     r1: 0,
     r2: 0,
-    duration: 4,
+    duration: 0,
   });
 
-  const [isMounted, setIsMounted] = useState(false);
-
   useEffect(() => {
-    setIsMounted(true);
     // Generate random values only on client
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRandomOffsets({
       x1: (Math.random() - 0.5) * 40,
       y1: (Math.random() - 0.5) * 40,
@@ -249,7 +253,7 @@ function FloatingTech({ tech, index }: { tech: any; index: number }) {
     });
   }, []);
 
-  if (!isMounted) {
+  if (randomOffsets.duration === 0) {
     // Initial static render to match server
     return (
       <div
