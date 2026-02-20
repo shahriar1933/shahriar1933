@@ -6,20 +6,20 @@ import { motion } from "framer-motion";
 
 const contacts = [
   {
-    icon: <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-[var(--primary)]" />,
+    icon: <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
     label: "Email",
     value: "steemblocks@gmail.com",
     href: "mailto:steemblocks@gmail.com",
   },
   {
-    icon: <Github className="w-8 h-8 sm:w-10 sm:h-10 text-[var(--primary)]" />,
+    icon: <Github className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
     label: "GitHub",
     value: "@Steemblocks",
     href: "https://github.com/Steemblocks",
     external: true,
   },
   {
-    icon: <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-[var(--primary)]" />,
+    icon: <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />,
     label: "WhatsApp",
     value: "+880 1749 081577",
     href: "https://wa.me/8801749081577",
@@ -37,10 +37,10 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <h2 className="font-[family-name:var(--font-outfit)] font-bold text-2xl sm:text-3xl md:text-4xl text-center mb-3 sm:mb-4">
+          <h2 className="font-outfit font-bold text-2xl sm:text-3xl md:text-4xl text-center mb-3 sm:mb-4">
             Get In Touch
           </h2>
-          <p className="text-center text-sm sm:text-base text-[var(--text-muted)] max-w-xl mx-auto mb-8 sm:mb-12 px-2">
+          <p className="text-center text-sm sm:text-base text-text-muted max-w-xl mx-auto mb-8 sm:mb-12 px-2">
             Feel free to reach out for collaborations, projects, or just a
             friendly chat
           </p>
@@ -60,18 +60,18 @@ export default function Contact() {
                 delay: index * 0.05,
               }}
             >
-              <span className="text-3xl sm:text-4xl flex-shrink-0">
+              <span className="text-3xl sm:text-4xl shrink-0">
                 {contact.icon}
               </span>
               <div className="flex flex-col gap-1">
-                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-text-muted">
                   {contact.label}
                 </span>
                 <Link
                   href={contact.href}
                   target={contact.external ? "_blank" : undefined}
                   rel={contact.external ? "noopener noreferrer" : undefined}
-                  className="text-sm sm:text-base font-medium text-white hover:text-[var(--primary)] transition-colors duration-200"
+                  className="text-sm sm:text-base font-medium text-white hover:text-primary transition-colors duration-200"
                   suppressHydrationWarning
                 >
                   {contact.value}

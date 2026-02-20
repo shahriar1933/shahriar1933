@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+@theme {
+  --font-outfit: var(--font-outfit);
+  --font-inter: var(--font-inter);
+
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-card: var(--bg-card);
+
+  --color-primary: var(--primary);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-glow: var(--secondary-glow);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --color-text-main: var(--text-main);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-glass-border-hover: var(--glass-border-hover);
+}
+
 /* ==========================================================================
    Shahriar Portfolio - Design System
    ========================================================================== */
@@ -48,7 +73,11 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    var(--font-inter),
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -56,15 +85,23 @@ body {
 
 /* Ambient background */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, var(--secondary-glow), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 20%, var(--primary-glow), transparent);
+    radial-gradient(
+      ellipse 80% 50% at 20% 40%,
+      var(--secondary-glow),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 20%,
+      var(--primary-glow),
+      transparent
+    );
   pointer-events: none;
   z-index: -1;
   transform: translateZ(0);
@@ -79,8 +116,16 @@ body::before {
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    black 30%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    black 30%,
+    transparent 100%
+  );
   opacity: 0.8;
   z-index: 0;
 }
@@ -101,7 +146,9 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-out, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease-out,
+    border-color 0.3s ease;
   will-change: transform;
 }
 
@@ -151,7 +198,11 @@ body::before {
 
 /* Featured card */
 .featured-card {
-  background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(139, 92, 246, 0.06));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.06),
+    rgba(139, 92, 246, 0.06)
+  );
   border-color: rgba(0, 229, 255, 0.12);
 }
 
@@ -162,7 +213,11 @@ body::before {
 
 /* Contribution card */
 .contribution-card {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(139, 92, 246, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.05),
+    rgba(139, 92, 246, 0.05)
+  );
   border-color: rgba(34, 197, 94, 0.15);
 }
 

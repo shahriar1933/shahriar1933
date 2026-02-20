@@ -33,7 +33,7 @@ export default function Header() {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
-      setIsVisible(true); // Always show header when menu is open
+      // setIsVisible(true); // Always show header when menu is open is now handled by class logic
     } else {
       document.body.style.overflow = "";
     }
@@ -70,20 +70,20 @@ export default function Header() {
 
       <header
         className={`fixed top-2 sm:top-4 left-0 right-0 z-50 px-3 sm:px-4 transition-transform duration-500 will-change-transform ${
-          isVisible ? "translate-y-0" : "-translate-y-[150%]"
+          isVisible || isMenuOpen ? "translate-y-0" : "-translate-y-[150%]"
         }`}
       >
         <div
           className={`max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-6 py-3 rounded-full border transition-all duration-300 ${
             isScrolled || isMenuOpen
-              ? "bg-[rgba(10,10,18,0.85)] border-[rgba(255,255,255,0.1)] shadow-lg shadow-black/10 backdrop-blur-xl"
-              : "bg-[rgba(10,10,18,0.5)] border-[rgba(255,255,255,0.06)] backdrop-blur-md"
+              ? "bg-bg-deep/85 border-white/10 shadow-lg shadow-black/10 backdrop-blur-xl"
+              : "bg-bg-deep/50 border-white/6 backdrop-blur-md"
           }`}
         >
           {/* Brand */}
           <Link
             href="/"
-            className="font-[family-name:var(--font-outfit)] font-bold text-lg sm:text-xl tracking-tight z-50 relative"
+            className="font-outfit font-bold text-lg sm:text-xl tracking-tight z-50 relative"
             suppressHydrationWarning
           >
             <span className="text-gradient">Shahriar</span>
@@ -95,7 +95,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[var(--text-muted)] hover:text-white text-sm font-medium relative py-1 transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[var(--primary)] after:to-[var(--secondary)] after:rounded-sm after:transition-all after:duration-300 hover:after:w-full"
+                className="text-text-muted hover:text-white text-sm font-medium relative py-1 transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-linear-to-r after:from-primary after:to-secondary after:rounded-sm after:transition-all after:duration-300 hover:after:w-full"
                 suppressHydrationWarning
               >
                 {link.label}
@@ -106,7 +106,7 @@ export default function Header() {
           {/* Hamburger Button */}
           <button
             className={`relative w-10 h-10 flex items-center justify-center md:hidden z-50 rounded-full transition-all duration-300 ${
-              isMenuOpen ? "bg-[var(--primary)]/10" : "bg-transparent"
+              isMenuOpen ? "bg-primary/10" : "bg-transparent"
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
@@ -116,7 +116,7 @@ export default function Header() {
               <span
                 className={`block w-full h-0.5 rounded-full transition-all duration-300 origin-center ${
                   isMenuOpen
-                    ? "bg-[var(--primary)] rotate-45 translate-y-[7px]"
+                    ? "bg-primary rotate-45 translate-y-[7px]"
                     : "bg-white"
                 }`}
               />
@@ -128,7 +128,7 @@ export default function Header() {
               <span
                 className={`block w-full h-0.5 rounded-full transition-all duration-300 origin-center ${
                   isMenuOpen
-                    ? "bg-[var(--primary)] -rotate-45 -translate-y-[7px]"
+                    ? "bg-primary -rotate-45 -translate-y-[7px]"
                     : "bg-white"
                 }`}
               />
@@ -145,14 +145,14 @@ export default function Header() {
       >
         {/* Menu Container */}
         <div
-          className={`absolute right-0 top-0 w-full xs:w-80 h-full bg-gradient-to-br from-[#0a0a12] via-[#0d0d18] to-[#050508] transform transition-transform duration-500 ease-out shadow-2xl border-l border-white/10 ${
+          className={`absolute right-0 top-0 w-full xs:w-80 h-full bg-linear-to-br from-bg-deep via-bg-deep to-bg-dark transform transition-transform duration-500 ease-out shadow-2xl border-l border-white/10 ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           {/* Decorative Elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div className="absolute top-20 -right-20 w-64 h-64 bg-[var(--primary)]/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-40 -left-20 w-48 h-48 bg-[var(--secondary)]/5 rounded-full blur-3xl" />
+            <div className="absolute top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-40 -left-20 w-48 h-48 bg-secondary/5 rounded-full blur-3xl" />
           </div>
 
           {/* Menu Content */}
@@ -164,7 +164,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  className={`group w-full flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.05] hover:border-[var(--primary)]/30 transition-all duration-300 ${
+                  className={`group w-full flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/2 border border-white/5 hover:bg-white/5 hover:border-primary/30 transition-all duration-300 ${
                     isMenuOpen
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-4"
@@ -177,11 +177,11 @@ export default function Header() {
                   suppressHydrationWarning
                 >
                   <span className="text-2xl">{link.icon}</span>
-                  <span className="font-[family-name:var(--font-outfit)] text-xl font-semibold text-white group-hover:text-[var(--primary)] transition-colors">
+                  <span className="font-outfit text-xl font-semibold text-white group-hover:text-primary transition-colors">
                     {link.label}
                   </span>
                   <svg
-                    className="w-5 h-5 ml-auto text-[var(--text-muted)] group-hover:text-[var(--primary)] group-hover:translate-x-1 transition-all"
+                    className="w-5 h-5 ml-auto text-text-muted group-hover:text-primary group-hover:translate-x-1 transition-all"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -210,7 +210,7 @@ export default function Header() {
                 href="https://github.com/Steemblocks"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all duration-300"
+                className="w-12 h-12 rounded-full bg-white/3 border border-white/8 flex items-center justify-center text-text-muted hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
                 suppressHydrationWarning
               >
                 <svg
@@ -223,7 +223,7 @@ export default function Header() {
               </a>
               <a
                 href="mailto:steemblocks@gmail.com"
-                className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all duration-300"
+                className="w-12 h-12 rounded-full bg-white/3 border border-white/8 flex items-center justify-center text-text-muted hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
                 suppressHydrationWarning
               >
                 <svg
@@ -244,7 +244,7 @@ export default function Header() {
                 href="https://wa.me/8801749081577"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all duration-300"
+                className="w-12 h-12 rounded-full bg-white/3 border border-white/8 flex items-center justify-center text-text-muted hover:text-white hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
                 suppressHydrationWarning
               >
                 <svg
@@ -270,7 +270,7 @@ export default function Header() {
               }`}
               style={{ transitionDelay: isMenuOpen ? "500ms" : "0ms" }}
             >
-              <p className="text-xs text-[var(--text-muted)]">
+              <p className="text-xs text-text-muted">
                 © 2025{" "}
                 <span className="text-gradient font-semibold">Shahriar</span>
               </p>

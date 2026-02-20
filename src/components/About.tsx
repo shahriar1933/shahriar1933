@@ -119,12 +119,12 @@ export default function About() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="font-[family-name:var(--font-outfit)] font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8">
+            <h2 className="font-outfit font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8">
               About <span className="text-gradient">Me</span>
             </h2>
 
             <div className="glass-card p-6 sm:p-8 rounded-2xl mb-8">
-              <div className="space-y-4 text-lg sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+              <div className="space-y-4 text-lg sm:text-lg text-text-secondary leading-relaxed">
                 <p>
                   I&apos;m a passionate{" "}
                   <span className="text-white font-medium">
@@ -143,10 +143,10 @@ export default function About() {
                 </p>
                 <p>
                   Currently focused on building tools and applications for the
-                  Steem ecosystem, I contribute to open-source projects, refactoring, and
-                  develop blockchain explorers, analytical dashboards, and
-                  developer tools that enhance the blockchain experience for
-                  everyone.
+                  Steem ecosystem, I contribute to open-source projects,
+                  refactoring, and develop blockchain explorers, analytical
+                  dashboards, and developer tools that enhance the blockchain
+                  experience for everyone.
                 </p>
                 <p>
                   Beyond coding, I am an active community member, constantly
@@ -166,7 +166,7 @@ export default function About() {
               ].map((stat, i) => (
                 <motion.div
                   key={i}
-                  className="glass-card p-4 rounded-xl text-center hover:bg-[var(--primary)]/5 transition-colors"
+                  className="glass-card p-4 rounded-xl text-center hover:bg-primary/5 transition-colors"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -183,9 +183,7 @@ export default function About() {
                   <div className="font-bold text-xl sm:text-2xl text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-[var(--text-muted)]">
-                    {stat.label}
-                  </div>
+                  <div className="text-sm text-text-muted">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -199,13 +197,13 @@ export default function About() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           >
-            <div className="bg-[var(--bg-deep)]/50 rounded-xl p-6 sm:p-12 h-full flex flex-col justify-center gap-8 relative overflow-hidden">
+            <div className="bg-bg-deep/50 rounded-xl p-6 sm:p-12 h-full flex flex-col justify-center gap-8 relative overflow-hidden">
               {/* Decorative background elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--primary)]/10 rounded-full blur-3xl -mr-32 -mt-32" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[var(--secondary)]/10 rounded-full blur-3xl -ml-32 -mb-32" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -ml-32 -mb-32" />
 
               <div className="relative z-10">
-                <h3 className="font-[family-name:var(--font-outfit)] font-bold text-2xl text-white mb-6">
+                <h3 className="font-outfit font-bold text-2xl text-white mb-6">
                   Technical Arsenal
                 </h3>
                 <motion.div
@@ -219,7 +217,7 @@ export default function About() {
                     <motion.div
                       key={tech.name}
                       variants={itemVariants}
-                      className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[var(--primary)]/50 hover:bg-white/[0.08] transition-colors duration-300 cursor-default"
+                      className="group relative flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/3 border border-white/10 hover:border-primary/50 hover:bg-white/8 transition-colors duration-300 cursor-default"
                       whileHover={{
                         scale: 1.05,
                         transition: {
@@ -288,7 +286,7 @@ export default function About() {
                           <path d={tech.path} />
                         )}
                       </svg>
-                      <span className="text-sm font-medium text-[var(--text-secondary)] group-hover:text-white transition-colors">
+                      <span className="text-sm font-medium text-text-secondary group-hover:text-white transition-colors">
                         {tech.name}
                       </span>
                     </motion.div>
@@ -297,7 +295,7 @@ export default function About() {
               </div>
 
               <div className="relative z-10 border-t border-white/10 pt-8">
-                <h3 className="font-[family-name:var(--font-outfit)] font-bold text-2xl text-white mb-6">
+                <h3 className="font-outfit font-bold text-2xl text-white mb-6">
                   Focus Areas
                 </h3>
                 <motion.ul
@@ -311,9 +309,9 @@ export default function About() {
                     <motion.li
                       key={i}
                       variants={itemVariants}
-                      className="flex items-center gap-3 text-[var(--text-secondary)]"
+                      className="flex items-center gap-3 text-text-secondary"
                     >
-                      <span className="w-2 h-2 rounded-full bg-[var(--secondary)]" />
+                      <span className="w-2 h-2 rounded-full bg-secondary" />
                       {area}
                     </motion.li>
                   ))}
